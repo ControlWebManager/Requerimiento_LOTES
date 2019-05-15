@@ -6,7 +6,7 @@ Desarrollar funcionabilidad de la aplicación pos_lot_selection para el uso de l
 
 ## Requerimiento Necesario:
 
-Todas la modificaciones deben realizarse en una sola aplicación (pos_lot_selection), se debe utilizar herencia, extenci]on de objeto, modificaciones, sin codificacion intrusivas a otros módulos de la plataforma Odoo
+Todas la modificaciones deben realizarse en una sola aplicación (pos_lot_selection), se debe utilizar herencia, extención de objeto, modificaciones, sin codificacion intrusivas a otros módulos de la plataforma Odoo
 
 ## Metodología de Trabajo : 
 
@@ -14,7 +14,7 @@ Todas la modificaciones deben realizarse en una sola aplicación (pos_lot_select
 
 Actividad  | Descripcion
 ------------- | -------------
-1. Diagnosticar archivos, objetos y métodos necesarios | Información necesaria para la modificacion y extención de código
+Diagnosticar archivos, objetos y métodos necesarios | Información necesaria para la modificacion y extención de código
 2. Desarrollar representación del modelo stock_quant | Ubicar campos necesarios 
 3. Cargar de la representación del modelo stock_quant en Caché | Desarrollo crítico , ya que de esta actividad depende el resto de función de la APP
 4. Prueba de Caja Negra 1 | 
