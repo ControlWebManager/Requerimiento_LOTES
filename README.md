@@ -26,7 +26,7 @@ Actividad  | Descripcion
 
 ### Fase de Prueba : 
 
-#### White Box / Test de Caja Negra
+#### Black Box / Test de Caja Negra
 
 Pruebas a nivel de código 
 
