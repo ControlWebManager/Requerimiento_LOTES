@@ -32,7 +32,7 @@ Pruebas a nivel de código
 
 Actividad | Descripcion 
 ------------- | -------------
- 1- Carga de modelo | Verificar si la carga de la representacion del modelo stock?quante, se realiza de manera satisfactoria al cargar el punto de venta en el navegador
+ 1- Carga de representación de modelo en cache | Verificar si la carga de la representacion del modelo stock_quante y campos, se realiza de manera satisfactoria al cargar el punto de venta en el navegador
  
 #### White Box / Test de Caja Blanca
 
