@@ -28,10 +28,7 @@ pos_lot_selection
 
 Antes  | Después
 ------------- | -------------
-![](https://github.com/gtica/Requerimiento_LOTES/blob/master/img/Selecci%C3%B3n_756.png)
-![](https://github.com/gtica/Requerimiento_LOTES/blob/master/img/Selecci%C3%B3n_757.png)
-![](https://github.com/gtica/Requerimiento_LOTES/blob/master/img/Selecci%C3%B3n_758.png)
-     
+![](https://github.com/ControlWebManager/Requerimiento_LOTES/blob/master/img/Captura%20de%20pantalla%20de%202019-05-14%2015-21-52.png)  | ![](https://github.com/ControlWebManager/Requerimiento_LOTES/blob/master/img/Captura%20de%20pantalla%20de%202019-05-14%2014-45-51.png)
      
 
 ---------------------
