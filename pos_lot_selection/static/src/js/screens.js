@@ -6,6 +6,9 @@ var gui = require('point_of_sale.gui');
 var models = require('point_of_sale.models');
 var core = require('web.core');
 
+//Necesario para trabajar con SIKI POS LOT
+var siki_pos_lot = require("siki_pos_lot.pos");
+
 var _t = core._t;
 
 

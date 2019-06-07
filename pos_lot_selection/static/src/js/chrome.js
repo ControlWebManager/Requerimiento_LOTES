@@ -3,8 +3,9 @@
 
 odoo.define("pos_lot_selection.chrome", function (require) {
     "use strict";
-
+     console.log('2 chrome')
     var chrome = require("point_of_sale.chrome");
+
 
     chrome.Chrome.include({
         build_widgets: function () {

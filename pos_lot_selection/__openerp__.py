@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    'name': 'POS Lot Selection',
+    'name': 'POS Lot Selection Solo Trabaja con SIKI POS LOT',
     'version': '10.0.1.0.0',
     'category': 'Point of Sale',
     'author': 'Tecnativa,'
@@ -19,10 +19,16 @@ List of modifications / Updates:
     * V.-2.3 En input lista destinado para selecionar lotes, aparece la cantidad de productos en Stock para el Lote en específico
     * V.-2.4 Presentación más amigable en lista de lotes, Nombre de lote y cantidad en Unidades que tiene en Stock
     * V.-2.5 Correción de Error en la Lista de producto tipo serial, no mostraba la lista si la cantidad en la linea de orden era mayor a uno
+    * V.-3.0 Funcianabilidad de la aplicacion para operar en POS en estado sin conexión a Internet
+    * V.-3.1 Actualizacion de cantidades vendidas y disponibles de lotes / serial en BD Cache
+    * V.-3.2 Capacidad dual de trabajar la inaformación con backend y cache, acción a ejecutar al abrir ventana de selección de lotes 
+    * V.-3.3 Dependecias necesarias de codigo python y clases javascript para trabajar con la APP siki_pos_lot
 
  """,
     'depends': [
+        'siki_pos_lot',
         'point_of_sale',
+
     ],
     'data': [
         'templates/assets.xml',
