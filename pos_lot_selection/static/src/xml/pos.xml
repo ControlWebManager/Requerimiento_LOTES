@@ -14,8 +14,8 @@
                     <select class="packlot-line-select">
                         <option disabled="" selected="" value="">Select a Serial/Lot Number</option>
                         <t t-foreach="widget.options.pack_lot_lines.lot_name" t-as="lot_name">
-                            <option t-att-value="lot_name">
-                                <t t-esc="lot_name +'  -  '+ lot_value[lot_name_index] +' Unidad(es)'"/>
+                            <option t-att-value="lot_name" t-att-title="lot_value[lot_name_index][2]">
+                                <t t-esc="lot_name +'  -  '+ lot_value[lot_name_index][0] +' Unidad(es)' "/>
                             </option>
                         </t>
                     </select>

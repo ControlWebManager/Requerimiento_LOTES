@@ -18,14 +18,14 @@ odoo.define("pos_lot_selection.models", function (require) {
     models.PosModel = models.PosModel.extend({
 
 
-          initialize: function(session, attributes) {
+        initialize: function(session, attributes) {
                _posmodel_super.initialize.apply(this, arguments);
                this.stock_quant = [];
                this.state_connection = '';
 
                var model_stock_quant = {
                     model:  'stock.quant',
-                    fields: ['product_id','lot_id', 'qty','location_id'],
+                    fields: ['product_id','lot_id', 'qty','location_id','in_date','removal_date'],
                     domain: [["lot_id", "!=", false]],
                     loaded: function(self, stock_quant){
                         self.stock_quant = stock_quant;
@@ -90,6 +90,7 @@ odoo.define("pos_lot_selection.models", function (require) {
             }
 
         },
+
         push_order: function(order){
             var self = this;
             var pushed = _posmodel_super.push_order.call(this, order);
@@ -111,7 +112,7 @@ odoo.define("pos_lot_selection.models", function (require) {
             var protocol = window.location.protocol;
             var url = window.location.host;
 
-            console.log('Hola soy la URL que verifica si hay conexion ->',protocol+url)
+            //console.log('Hola soy la URL que verifica si hay conexion ->',protocol+url)
 
 
             var file = protocol+'//'+url;
@@ -134,7 +135,7 @@ odoo.define("pos_lot_selection.models", function (require) {
         get_lot: function(product, location_id, stock_quant, type_lot) {
             var done = new $.Deferred();
             var self = this;
-                console.log('self connection', self.doesConnectionExist());
+                //console.log('self connection', self.doesConnectionExist());
 
             var model_stock_quant  = self.stock_quant
 
@@ -146,9 +147,9 @@ odoo.define("pos_lot_selection.models", function (require) {
                             ["product_id", "=", product]],
                     }, {'async': false}).then(function (result) {
 
-                        console.log('Pido informacion al Backen sobre los Lotes ->',result)
+                       // console.log('Pido informacion al Backen sobre los Lotes ->',result)
                         var product_lot = [];
-                        console.log('Si tengo resultados entro aca result.length ->',result.length)
+                       // console.log('Si tengo resultados entro aca result.length ->',result.length)
                         if (result.length) {
 
                             for (var i = 0; i < result.length; i++) {
@@ -161,13 +162,15 @@ odoo.define("pos_lot_selection.models", function (require) {
                                     });
 
                                     filter_models[0].qty = result.records[i].qty;
-                                    console.log('Actualizado cache de Lotes lot_id/product_id/qty', result.records[i].lot_id[1]+'->'+product+'->'+result.records[i].qty)
+                                   // console.log('Actualizado cache de Lotes lot_id/product_id/qty', result.records[i].lot_id[1]+'->'+product+'->'+result.records[i].qty)
                                 }
-                            console.log('Conexion al Server')
+                         //   console.log('Conexion al Server')
 
                                 product_lot.push({
                                     'lot_name': result.records[i].lot_id[1],
                                     'qty': result.records[i].qty,
+                                    'in_date': result.records[i].in_date,
+                                    'removal_date': result.records[i].removal_date,
                                 });
                             }
                         }
@@ -188,9 +191,11 @@ odoo.define("pos_lot_selection.models", function (require) {
                              console.log('Sin Conexion al Server')
 
                             product_lot.push({
-                                'lot_name': filter_models[i].lot_id[1],
-                                'qty': filter_models[i].qty,
-                            });
+                                    'lot_name': result.records[i].lot_id[1],
+                                    'qty': result.records[i].qty,
+                                    'in_date': result.records[i].in_date,
+                                    'removal_date': result.records[i].removal_date,
+                                });
                         }
                     }
                     done.resolve(product_lot);
@@ -264,9 +269,32 @@ odoo.define("pos_lot_selection.models", function (require) {
             .then(function (product_lot) {
                 var lot_name = [];
                 var lot_value = [];
+                var lot_in_date = [];
+                var lot_removal_date = [];
+                var valueToPush = [];
+                var current_date = new Date();
+                var format_fecha;
+                var formatted_date_removal;
+
+                var formatted_current_date = current_date.getDate() +
+                                "-" + (current_date.getMonth() + 1) +
+                                "-" + current_date.getFullYear()
+
+
                 var type_lot = compute_lot_lines.order_line.product.tracking;
-                console.log('Aqui estoy en models.Orderline pido informacion a las lineas de product_lot.length', product_lot.length)
+                console.log('product_lot', product_lot)
+                //https://koukia.ca/sorting-an-array-of-objects-with-jquery-d01e12047ce4
+                function sortByKeyAsc(array, key) {
+                    return array.sort(function (a, b) {
+                        var x = a[key]; var y = b[key];
+                        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                    });
+                }
+                var product_lot = sortByKeyAsc(product_lot, "removal_date");
+                console.log('product_lot ordenado',product_lot)
+
                 for (var i = 0; i < product_lot.length; i++) {
+
 
 
                     if(type_lot == 'serial'){
@@ -280,8 +308,18 @@ odoo.define("pos_lot_selection.models", function (require) {
 
                         if (product_lot[i].qty >= compute_lot_lines.order_line.quantity) {
                             lot_name.push(product_lot[i].lot_name);
-                            lot_value.push(product_lot[i].qty);
 
+                            format_fecha = new Date(product_lot[i].removal_date);
+
+                            formatted_date_removal = format_fecha.getDate() +
+                                "-" + (format_fecha.getMonth() + 1) +
+                                "-" + format_fecha.getFullYear()
+
+                            var formato_info_vencimiento = 'Lote vence en: ' + Math.floor((format_fecha - current_date)/(1000*60*60*24)) + ' días';
+
+                            lot_value[i] = [product_lot[i].qty, product_lot[i].in_date, formato_info_vencimiento];
+                            lot_value.push(lot_value);
+                            console.log('lot_value', formato_info_vencimiento)
                         }
                     }
 
@@ -289,6 +327,7 @@ odoo.define("pos_lot_selection.models", function (require) {
 
                 compute_lot_lines.lot_name = lot_name;
                 compute_lot_lines.lot_value = lot_value;
+
 
                 done.resolve(compute_lot_lines);
             });

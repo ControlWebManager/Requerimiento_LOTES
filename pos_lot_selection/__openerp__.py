@@ -23,6 +23,8 @@ List of modifications / Updates:
     * V.-3.1 Actualizacion de cantidades vendidas y disponibles de lotes / serial en BD Cache
     * V.-3.2 Capacidad dual de trabajar la inaformación con backend y cache, acción a ejecutar al abrir ventana de selección de lotes 
     * V.-3.3 Dependecias necesarias de codigo python y clases javascript para trabajar con la APP siki_pos_lot
+    * V.-4.0 Se incorpora a la lista de Lotes, información sobre los Dias que quedan para caducar el Lote
+    * V.-4.1 Organización de la lista de lotes por fecha de eliminación de acuerdo a métodos de gestión de almacén FEFO
 
  """,
     'depends': [
