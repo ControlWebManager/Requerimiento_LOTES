@@ -9,13 +9,14 @@
             <div class="packlot-select">
                 <t t-if="widget.options.pack_lot_lines and widget.options.pack_lot_lines.lot_name">
 
-                    <t t-set="lot_value" t-value="widget.options.pack_lot_lines.lot_value"/>
+                    <t t-set="lot_qty" t-value="widget.options.pack_lot_lines.lot_qty"/>
+                    <t t-set="lot_expire" t-value="widget.options.pack_lot_lines.lot_expire"/>
 
                     <select class="packlot-line-select">
                         <option disabled="" selected="" value="">Select a Serial/Lot Number</option>
                         <t t-foreach="widget.options.pack_lot_lines.lot_name" t-as="lot_name">
-                            <option t-att-value="lot_name" t-att-title="lot_value[lot_name_index][2]">
-                                <t t-esc="lot_name +'  -  '+ lot_value[lot_name_index][0] +' Unidad(es)' "/>
+                            <option t-att-value="lot_name" t-att-title="lot_expire[lot_name_index]">
+                                <t t-esc="lot_name +'  -  '+ lot_qty[lot_name_index] +' Unidad(es)' "/>
                             </option>
                         </t>
                     </select>
