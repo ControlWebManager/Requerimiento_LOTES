@@ -12,7 +12,7 @@
     'license': 'AGPL-3',
     'description': """
 List of modifications / Updates:
-----------------------
+--------------------------------
     * V.-2.0 Permite seleccionar primero el Producto, segundo paso selección de Lote
     * V.-2.1 Al precionar botón de pago, si en la línea de orden existe un producto de lote o serie, no permite procesar factura hasta tanto el usuario seleccione un lote o serail correspondiente
     * V.-2.2 Ventana de alerta si no haz seleccionado un Lote 
@@ -25,7 +25,7 @@ List of modifications / Updates:
     * V.-3.3 Dependecias necesarias de codigo python y clases javascript para trabajar con la APP siki_pos_lot
     * V.-4.0 Se incorpora a la lista de Lotes, información sobre los Dias que quedan para caducar el Lote
     * V.-4.1 Organización de la lista de lotes por fecha de eliminación de acuerdo a métodos de gestión de almacén FEFO
-
+    * V.-4.2 Se corrige error, al llegar cantidad del lote a 1 no asignaba correctamente el nombre de Lote 
  """,
     'depends': [
         'siki_pos_lot',
