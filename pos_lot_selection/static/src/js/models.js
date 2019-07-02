@@ -154,6 +154,8 @@ odoo.define("pos_lot_selection.models", function (require) {
 
                             for (var i = 0; i < result.length; i++) {
 
+                                console.log('Line 193 models.js result', result.records[i])
+
                                 if(type_lot == 'lot'){
 
                                     var filter_models =  model_stock_quant.filter(function(filter) {
@@ -183,18 +185,21 @@ odoo.define("pos_lot_selection.models", function (require) {
 
                      if (stock_quant.length) {
 
+
                         var filter_models =  stock_quant.filter(function(filter) {
                             return (filter.product_id[0] == product) && (filter.location_id[0] == location_id);
                         });
 
                         for (var i = 0; i < filter_models.length; i++) {
-                             console.log('Sin Conexion al Server')
+
+                            console.log('Sin Conexion al Server')
+                            console.log('Line 193 models.js result', filter_models[i])
 
                             product_lot.push({
-                                    'lot_name': result.records[i].lot_id[1],
-                                    'qty': result.records[i].qty,
-                                    'in_date': result.records[i].in_date,
-                                    'removal_date': result.records[i].removal_date,
+                                    'lot_name': filter_models[i].lot_id[1],
+                                    'qty': filter_models[i].qty,
+                                    'in_date': filter_models[i].in_date,
+                                    'removal_date': filter_models[i].removal_date,
                                 });
                         }
                     }

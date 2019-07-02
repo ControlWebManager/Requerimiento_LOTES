@@ -26,6 +26,7 @@ List of modifications / Updates:
     * V.-4.0 Se incorpora a la lista de Lotes, información sobre los Dias que quedan para caducar el Lote
     * V.-4.1 Organización de la lista de lotes por fecha de eliminación de acuerdo a métodos de gestión de almacén FEFO
     * V.-4.2 Se corrige error, al llegar cantidad del lote a 1 no asignaba correctamente el nombre de Lote 
+    * V.-4.3 Se corrige error, no se abre popup lotes si el POS se encuentra sin conexión
  """,
     'depends': [
         'siki_pos_lot',
