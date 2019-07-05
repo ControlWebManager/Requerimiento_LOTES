@@ -3,7 +3,7 @@
 
 odoo.define("pos_lot_selection.models", function (require) {
     "use strict";
-    console.log('exito en models con var siki pos lot')
+    //console.log('exito en models con var siki pos lot')
     var models = require("point_of_sale.models");
 
     //Necesario para trabajar con SIKI POS LOT
@@ -154,7 +154,7 @@ odoo.define("pos_lot_selection.models", function (require) {
 
                             for (var i = 0; i < result.length; i++) {
 
-                                console.log('Line 193 models.js result', result.records[i])
+                                //console.log('Line 193 models.js result', result.records[i])
 
                                 if(type_lot == 'lot'){
 
@@ -180,7 +180,7 @@ odoo.define("pos_lot_selection.models", function (require) {
                     });
 
                 }else{
-                    console.log('Aqui estamos por Cache stock_quant.length ->',stock_quant.length)
+                    //console.log('Aqui estamos por Cache stock_quant.length ->',stock_quant.length)
                     var product_lot = [];
 
                      if (stock_quant.length) {
@@ -192,8 +192,8 @@ odoo.define("pos_lot_selection.models", function (require) {
 
                         for (var i = 0; i < filter_models.length; i++) {
 
-                            console.log('Sin Conexion al Server')
-                            console.log('Line 193 models.js result', filter_models[i])
+                            //console.log('Sin Conexion al Server')
+                            //console.log('Line 193 models.js result', filter_models[i])
 
                             product_lot.push({
                                     'lot_name': filter_models[i].lot_id[1],
